@@ -1,3 +1,19 @@
+<?php
+//koneksi ke DB & pilih database
+$conn = mysqli_connect('localhost', 'root', '', 'pw_a22100100');
+
+//query isi tabel mahasiswa
+$result = mysqli_query($conn, "SELECT * FROM mahasiswa");
+
+//ubah data ke dalam array
+$row = mysqli_fetch_row($result);
+var_dump($row);
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
