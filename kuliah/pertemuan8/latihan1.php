@@ -6,14 +6,20 @@ $conn = mysqli_connect('localhost', 'root', '', 'pw_a22100100');
 $result = mysqli_query($conn, "SELECT * FROM mahasiswa");
 
 //ubah data ke dalam array
-$row = mysqli_fetch_row($result);
-var_dump($row);
+//$row = mysqli_fetch_row($result); //array numerik
+//$row = mysqli_fetch_assoc($result); //array associative
+//$row = mysqli_fetch_array($result); //keduanya
+
+$rows = [''];
+while ($row = mysqli_fetch_assoc($result)) {
+  $rows[] = $row;
+}
+var_dump($rows);
+
+//tampung ke variabel mahasiswa
+$mahasiswa = $rows;
 
 ?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,16 +44,21 @@ var_dump($row);
       <th>Jurusan</th>
       <th>Aksi</th>
     </tr>
-    <td>1</td>
-    <td><img src="img/Pranata.jpeg" width="60"></td>
-    <td>A2.2100100</td>
-    <td>Pranata Pramudya</td>
-    <td>pranajaya52@gmail.com</td>
-    <td>Teknik Informatika</td>
-    <td>
-      <a href="">ubah</a> | <a href="">hapus</a>
-    </td>
 
+    <?php foreach ($mahasiswa as $mhs) : ?>
+
+      <tr>
+        <td>1</td>
+        <td><img src="img/<?= $mhs['gambar']; ?>" width="60"></td>
+        <td><?= $mhs['nrp']; ?></td>
+        <td><?= $mhs['nama']; ?></td>
+        <td><?= $mhs['email']; ?></td>
+        <td><?= $mhs['jurusan']; ?></td>
+        <td>
+          <a href="">ubah</a> | <a href="">hapus</a>
+        </td>
+      </tr>
+    <?php endforeach; ?>
   </table>
 </body>
 
