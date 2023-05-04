@@ -65,6 +65,7 @@ if (isset($_POST['tambah'])) {
           <input type="text" name="gambar" required>
         </label>
       </li>
+      <br>
       <li>
         <button type="submit" name="tambah">Tambah Data!</button>
       </li>
